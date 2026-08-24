@@ -3,13 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Aviator - مصر</title>
-
-  <link
-    href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css"
-    rel="stylesheet"
-  >
-
+  <title>AI Game Predictor - الإيداع</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
   <style>
     .console-box {
       font-family: monospace;
@@ -20,10 +15,7 @@
       color: #00ff88;
       height: 250px;
       overflow-y: auto;
-      direction: rtl;
-      text-align: right;
     }
-
     .loading-screen {
       font-family: monospace;
       background: #000;
@@ -39,29 +31,19 @@
       left: 0;
       width: 100%;
     }
-
     .hidden-screen {
       display: none;
     }
   </style>
 </head>
-
 <body class="bg-gray-900 text-white font-sans">
-
-  <!-- Loading -->
   <div id="loading" class="loading-screen">
-    <p>جاري التحميل... يرجى الانتظار بينما نقوم بإعداد التجربة.</p>
+    <p>جاري التحميل... يرجى الانتظار بينما نجهز تجربتك.</p>
   </div>
 
-  <!-- Main content -->
   <div id="mainContent" class="hidden-screen">
-
-    <!-- Header -->
     <header class="w-full bg-gray-800 p-4 flex justify-between items-center">
-      <h1 class="text-xl font-bold text-green-400">
-        Aviator مصر
-      </h1>
-
+      <h1 class="text-xl font-bold text-green-400">1xBet AI Predictor</h1>
       <nav class="space-x-4 space-x-reverse">
         <a href="#how" class="hover:text-green-400">كيف يعمل</a>
         <a href="#games" class="hover:text-green-400">الألعاب</a>
@@ -69,252 +51,94 @@
       </nav>
     </header>
 
-    <!-- Hero -->
-    <section
-      id="start"
-      class="min-h-screen flex flex-col items-center justify-center px-4 text-center"
-    >
+    <section class="min-h-screen flex flex-col items-center justify-center px-4 text-center">
+      <h2 class="text-3xl md:text-5xl font-bold mb-6">احصل على أموال حقيقية مع توقعات الذكاء الاصطناعي</h2>
+      <p class="max-w-xl mb-8 text-gray-300">آلاف اللاعبين في مصر يستخدمون الذكاء الاصطناعي لدينا للفوز في ألعاب مثل Aviator وMines وPenalty. دقة إشارات 98%، توقعات في الوقت الفعلي وسحب سريع.</p>
 
-      <h2 class="text-3xl md:text-5xl font-bold mb-6">
-        اكتشف تجربة Aviator
-      </h2>
+      <input id="userId" type="text" placeholder="أدخل معرف حساب 1xBet الخاص بك (Account ID)" class="bg-gray-700 text-white p-3 rounded-md mb-4 w-full max-w-xs text-center" />
+      <button id="connectButton" class="bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-6 rounded-xl text-lg transition">ربط الحساب</button>
 
-      <p class="max-w-xl mb-8 text-gray-300">
-        تجربة مخصصة للمستخدمين في مصر مع واجهة سهلة الاستخدام
-        ومعلومات تظهر في الوقت الفعلي.
-      </p>
-
-      <input
-        id="userId"
-        type="text"
-        placeholder="أدخل رقم حسابك"
-        class="bg-gray-700 text-white p-3 rounded-md mb-4 text-center"
-      />
-
-      <button
-        id="connectButton"
-        class="bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-6 rounded-xl text-lg transition"
-      >
-        ربط الحساب
-      </button>
-
-      <!-- Connection success -->
-      <div
-        id="connectionSuccess"
-        class="hidden text-green-400 font-bold mt-6"
-      >
-        <p>
-          تم ربط الحساب رقم:
-          <span id="accountIdDisplay">1714567890</span>
-          بنجاح!
-        </p>
-
-        <p>
-          الحالة: نشط | النظام جاهز
-        </p>
-
-        <button
-          id="getSignalButton"
-          class="bg-green-500 hover:bg-green-600 text-white font-semibold py-3 px-6 rounded-xl text-lg transition mt-4"
-        >
-          متابعة
-        </button>
+      <div id="connectionSuccess" class="hidden text-green-400 font-bold mt-6">
+        <p>معرف الحساب: <span id="accountIdDisplay">1254567890</span> تم ربطه بنجاح!</p>
+        <p>الحالة: نشط | دقة 100% | تم تحليل الخوارزميات</p>
+        <button id="getSignalButton" class="bg-green-500 hover:bg-green-600 text-white font-semibold py-3 px-6 rounded-xl text-lg transition mt-4">احصل على الإشارة</button>
       </div>
 
-      <!-- Deposit box -->
-      <div
-        id="errorBox"
-        class="hidden bg-red-600 p-6 rounded-xl max-w-md mx-auto mt-6"
-      >
-
-        <h2 class="text-xl font-bold mb-2">
-          ⚠️ لم يتم العثور على رصيد
-        </h2>
-
-        <p class="mb-2">
-          يبدو أن رصيد حسابك فارغ.
-          يمكنك الانتقال إلى الموقع لإضافة رصيد إلى حسابك.
-        </p>
-
-        <p class="mb-4 font-bold text-yellow-300">
-          استخدم الرمز الترويجي: GOWAN01
-        </p>
-
-        <a
-          href="https://reffpa.com/L?tag=d_5434769m_18607c_&site=5434769&ad=18607&r=registration"
-          target="_blank"
-          rel="noopener noreferrer"
-          id="depositButton"
-          class="inline-block bg-yellow-400 hover:bg-yellow-500 text-black font-bold py-2 px-4 rounded-lg transition"
-        >
-          الانتقال إلى الموقع
+      <div id="errorBox" class="hidden bg-red-600 p-6 rounded-xl max-w-md mx-auto mt-6">
+        <h2 class="text-xl font-bold mb-2">⚠️ لم يتم العثور على إيداع</h2>
+        <p class="mb-2">يبدو أن رصيدك فارغ. يرجى إيداع 100 ج.م لفتح الإشارات والبدء في تحقيق الأرباح.</p>
+        <p class="mb-4 font-bold text-yellow-300">استخدم الرمز الترويجي: GOWAN01</p>
+        <a href="https://reffpa.com/L?tag=d_5434769m_18607c_&site=5434769&ad=18607&r=registration" target="_blank" id="depositButton" class="inline-block bg-yellow-400 hover:bg-yellow-500 text-black font-bold py-2 px-4 rounded-lg transition">
+          إيداع الآن على 1xBet
         </a>
-
       </div>
     </section>
 
-    <!-- Amounts -->
     <section class="bg-gray-800 py-12 px-6 text-center">
-
-      <h3 class="text-2xl font-bold text-green-400 mb-6">
-        مبالغ بين 2,000 و3,000 جنيه مصري
-      </h3>
-
-      <div
-        class="grid md:grid-cols-2 gap-4 max-w-4xl mx-auto text-sm text-green-300"
-      >
-
-        <p>💰 2,050 EGP</p>
-        <p>💰 2,180 EGP</p>
-
-        <p>💰 2,320 EGP</p>
-        <p>💰 2,450 EGP</p>
-
-        <p>💰 2,590 EGP</p>
-        <p>💰 2,670 EGP</p>
-
-        <p>💰 2,730 EGP</p>
-        <p>💰 2,810 EGP</p>
-
-        <p>💰 2,920 EGP</p>
-        <p>💰 3,000 EGP</p>
-
+      <h3 class="text-2xl font-bold text-green-400 mb-6">أعلى الفائزين اليوم (ج.م)</h3>
+      <div class="grid md:grid-cols-2 gap-4 text-right max-w-4xl mx-auto text-sm text-green-300">
+        <p>👤 معرف المستخدم: 1718473422 – 2 450 ج.م</p>
+        <p>👤 معرف المستخدم: 1711238474 – 2 890 ج.م</p>
+        <p>👤 معرف المستخدم: 1709234822 – 2 120 ج.م</p>
+        <p>👤 معرف المستخدم: 1717339121 – 2 980 ج.م</p>
+        <p>👤 معرف المستخدم: 1712900113 – 2 300 ج.م</p>
+        <p>👤 معرف المستخدم: 1713721091 – 2 670 ج.م</p>
+        <p>👤 معرف المستخدم: 1711937742 – 2 200 ج.م</p>
+        <p>👤 معرف المستخدم: 1714921811 – 2 780 ج.م</p>
+        <p>👤 معرف المستخدم: 1713238742 – 2 560 ج.م</p>
+        <p>👤 معرف المستخدم: 1717749301 – 3 000 ج.م</p>
       </div>
-
     </section>
 
-    <!-- Games -->
-    <section
-      id="games"
-      class="bg-gray-800 py-12 px-6 text-center"
-    >
-
-      <h3 class="text-2xl font-bold text-green-400 mb-6">
-        اللعبة
-      </h3>
-
+    <section id="games" class="bg-gray-800 py-12 px-6 text-center">
+      <h3 class="text-2xl font-bold text-green-400 mb-6">الألعاب المدعومة</h3>
       <div class="grid md:grid-cols-3 gap-6 max-w-5xl mx-auto">
-
         <div class="bg-gray-700 p-6 rounded-xl shadow-lg">
-
-          <h4 class="text-xl font-bold mb-2">
-            🎮 Aviator
-          </h4>
-
-          <p class="text-gray-300">
-            لعبة سريعة تعتمد على ارتفاع المضاعف حتى نهاية الجولة.
-            اختر اللحظة التي تريد فيها إنهاء الجولة.
-          </p>
-
+          <h4 class="text-xl font-bold mb-2">🎮 Aviator</h4>
+          <p class="text-gray-300">توقع متى تسحب أموالك قبل أن تطير الطائرة. يتعرف الذكاء الاصطناعي لدينا على الأنماط في الوقت الفعلي.</p>
         </div>
-
       </div>
-
     </section>
 
-    <!-- How -->
-    <section
-      id="how"
-      class="bg-gray-900 py-12 px-6 text-center"
-    >
-
-      <h3 class="text-2xl font-bold text-green-400 mb-6">
-        كيف يعمل
-      </h3>
-
+    <section id="how" class="bg-gray-900 py-12 px-6 text-center">
+      <h3 class="text-2xl font-bold text-green-400 mb-6">كيف يعمل</h3>
       <div class="max-w-3xl mx-auto space-y-4 text-gray-300">
-
-        <p>
-          📡 يتم عرض معلومات الجولة في الوقت الفعلي.
-        </p>
-
-        <p>
-          💡 تابع البيانات والمضاعفات مباشرة من جهازك.
-        </p>
-
-        <p>
-          📲 واجهة متوافقة مع الهاتف والكمبيوتر.
-        </p>
-
+        <p>📡 ينحلل الذكاء الاصطناعي لدينا البيانات المباشرة والنتائج التاريخية على مدار الساعة 24/7.</p>
+        <p>💡 يتعرف على الأنماط التي تحقق أرباحًا باستمرار.</p>
+        <p>📲 تتلقى التوقعات في الوقت الفعلي مباشرة على جهازك.</p>
       </div>
-
     </section>
 
-    <!-- Console -->
     <section class="bg-black py-12 px-6 text-center">
-
-      <h3 class="text-xl font-bold text-green-400 mb-4">
-        [ سجل النظام ]
-      </h3>
-
-      <div
-        class="console-box max-w-3xl mx-auto"
-        id="console"
-      >
-        <p>[INFO] النظام نشط ✅</p>
+      <h3 class="text-xl font-bold text-green-400 mb-4">[ سجل النظام - Console Log ]</h3>
+      <div class="console-box max-w-3xl mx-auto text-left" id="console" dir="ltr">
+        <p>[INFO] Predictor service active ✅</p>
       </div>
-
     </section>
 
-    <!-- Footer -->
     <footer class="text-center text-gray-500 text-sm py-6">
-      © 2026 Aviator. العب بمسؤولية. +18
+      © 2026 AI Predictor. غير مرتبط بـ 1xBet. استخدمه بمسؤولية.
     </footer>
-
   </div>
 
   <script>
-
-    // Loading screen
     setTimeout(() => {
-      document
-        .getElementById("loading")
-        .classList.add("hidden-screen");
-
-      document
-        .getElementById("mainContent")
-        .classList.remove("hidden-screen");
+      document.getElementById("loading").classList.add("hidden-screen");
+      document.getElementById("mainContent").classList.remove("hidden-screen");
     }, 3000);
 
+    document.getElementById("connectButton").addEventListener("click", () => {
+      const userId = document.getElementById("userId").value;
+      if (userId) {
+        document.getElementById("accountIdDisplay").innerText = userId;
+        document.getElementById("connectionSuccess").classList.remove("hidden");
+        document.getElementById("errorBox").classList.add("hidden");
+      }
+    });
 
-    // Connect account
-    document
-      .getElementById("connectButton")
-      .addEventListener("click", () => {
-
-        const userId =
-          document.getElementById("userId").value;
-
-        if (userId) {
-
-          document
-            .getElementById("accountIdDisplay")
-            .innerText = userId;
-
-          document
-            .getElementById("connectionSuccess")
-            .classList.remove("hidden");
-
-          document
-            .getElementById("errorBox")
-            .classList.add("hidden");
-        }
-
-      });
-
-
-    // Continue
-    document
-      .getElementById("getSignalButton")
-      .addEventListener("click", () => {
-
-        document
-          .getElementById("errorBox")
-          .classList.remove("hidden");
-
-      });
-
+    document.getElementById("getSignalButton").addEventListener("click", () => {
+      document.getElementById("errorBox").classList.remove("hidden");
+    });
   </script>
-
 </body>
 </html>
