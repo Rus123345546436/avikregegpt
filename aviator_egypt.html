@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Aviator AI Analysis Egypt</title>
+
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+
+  <style>
+    .console-box {
+      font-family: monospace;
+      background-color: #1a1a1a;
+      padding: 1rem;
+      border-radius: 0.5rem;
+      box-shadow: 0 0 20px #00ff88;
+      color: #00ff88;
+      height: 250px;
+      overflow-y: auto;
+    }
+
+    .loading-screen {
+      font-family: monospace;
+      background: #000;
+      color: #00ff88;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      flex-direction: column;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      z-index: 50;
+    }
+
+    .lang-modal {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.85);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 60;
+    }
+
+    .hidden-screen {
+      display: none;
+    }
+  </style>
+</head>
+
+<body class="bg-gray-900 text-white font-sans">
+
+<!-- Language Selection Modal -->
+<div id="langModal" class="lang-modal">
+  <div class="bg-gray-800 p-6 rounded-xl text-center max-w-sm w-11/12 border border-gray-700 shadow-2xl">
+    <h2 class="text-xl font-bold mb-6 text-white">Select Language / اختر اللغة</h2>
+    
+    <!-- Egypt Button -->
+    <button onclick="setLanguage('ar')" class="w-full bg-gray-100 hover:bg-white text-gray-900 font-bold py-3 px-4 rounded-lg mb-3 transition">
+      العربية
+    </button>
+    
+    <!-- English Button -->
+    <button onclick="setLanguage('en')" class="w-full bg-gray-200 hover:bg-white text-gray-900 font-bold py-3 px-4 rounded-lg transition">
+      English
+    </button>
+  </div>
+</div>
+
+<!-- Loading Screen -->
+<div id="loading" class="loading-screen hidden-screen">
+    <p>Loading AI system...</p>
+</div>
+
+<!-- Main Content -->
+<div id="mainContent" class="hidden-screen">
+
+<header class="w-full bg-gray-800 p-4 flex justify-between items-center">
+
+<h1 class="text-xl font-bold text-green-400">
+1XBET AI Predictor
+</h1>
+
+<nav class="space-x-4">
+<a href="#how" class="hover:text-green-400" id="navHow">How It Works</a>
+<a href="#games" class="hover:text-green-400" id="navGames">Games</a>
+<a href="#start" class="hover:text-green-400" id="navStart">Start</a>
+</nav>
+
+</header>
+
+<section id="start"
+class="min-h-screen flex flex-col items-center justify-center px-4 text-center">
+
+<h2 class="text-3xl md:text-5xl font-bold mb-6" id="heroTitle">
+Aviator AI Analysis for Egypt
+</h2>
+
+<p class="max-w-xl mb-8 text-gray-300" id="heroDesc">
+Players in Egypt can use our Aviator analysis interface to review game data and live statistics. Results are not guaranteed.
+</p>
+
+<!-- Promocode Box -->
+<div class="bg-gray-800 border-2 border-dashed border-green-400 p-4 rounded-xl mb-6 max-w-md w-full">
+  <p class="text-sm text-gray-400 uppercase" id="promoLabel">PROMOCODE FOR REGISTRATION</p>
+  <p class="text-3xl font-bold text-green-400 tracking-wider my-1">GOWAN01</p>
+  <p class="text-xs text-gray-400" id="promoSub">Use this code to activate predictions</p>
+</div>
+
+<button id="startButton"
+class="bg-green-500 hover:bg-green-600 text-white font-semibold py-3 px-6 rounded-xl text-lg transition">
+Start Now
+</button>
+
+<!-- Registration Error Box -->
+<div id="errorBox"
+class="hidden bg-red-600 p-6 rounded-xl max-w-md mx-auto mt-6">
+
+<h2 class="text-xl font-bold mb-2" id="errorTitle">
+⚠️ Account Not Found
+</h2>
+
+<p class="mb-4" id="errorDesc">
+Please register your account with promo code <b>GOWAN01</b> before using the platform.
+</p>
+
+<a href="https://reffpa.com/L?tag=d_5434769m_18607c_&site=5434769&ad=18607&r=registration"
+target="_blank"
+class="inline-block bg-yellow-400 hover:bg-yellow-500 text-black font-bold py-2 px-4 rounded-lg transition" id="regBtn">
+
+Create Account
+
+</a>
+
+</div>
+
+</section>
+
+<!-- Winnings in EGP (User ID starts with 177, 10 digits total) -->
+<section class="bg-gray-800 py-12 px-6 text-center">
+
+<h3 class="text-2xl font-bold text-green-400 mb-6" id="statsTitle">
+Today's Statistics (EGP)
+</h3>
+
+<div class="grid md:grid-cols-2 gap-4 text-left max-w-4xl mx-auto text-sm text-green-300">
+
+<p>👤 User ID: 1774829103 — EGP 2,180</p>
+<p>👤 User ID: 1773910482 — EGP 2,340</p>
+<p>👤 User ID: 1778204918 — EGP 2,760</p>
+<p>👤 User ID: 1771930485 — EGP 2,120</p>
+<p>👤 User ID: 1776029481 — EGP 2,980</p>
+<p>👤 User ID: 1775839201 — EGP 2,430</p>
+<p>👤 User ID: 1772940183 — EGP 2,890</p>
+<p>👤 User ID: 1779183049 — EGP 2,650</p>
+<p>👤 User ID: 1770482914 — EGP 2,250</p>
+<p>👤 User ID: 1776391028 — EGP 2,720</p>
+
+</div>
+
+</section>
+
+<section id="games" class="bg-gray-800 py-12 px-6 text-center">
+
+<h3 class="text-2xl font-bold text-green-400 mb-6" id="gamesTitle">
+Compatible Games
+</h3>
+
+<div class="grid md:grid-cols-3 gap-6 max-w-5xl mx-auto">
+
+<div class="bg-gray-700 p-6 rounded-xl shadow-lg">
+
+<h4 class="text-xl font-bold mb-2">
+🎮 Aviator
+</h4>
+
+<p class="text-gray-300" id="gameDesc">
+Analyze previous rounds and receive live AI-powered statistics for Aviator.
+</p>
+
+</div>
+
+</div>
+
+</section>
+
+<section id="how" class="bg-gray-900 py-12 px-6 text-center">
+
+<h3 class="text-2xl font-bold text-green-400 mb-6" id="howTitle">
+How It Works
+</h3>
+
+<div class="max-w-3xl mx-auto space-y-4 text-gray-300">
+
+<p id="step1">📡 The AI continuously analyzes Aviator game data.</p>
+<p id="step2">💡 It detects patterns and provides real-time analysis.</p>
+<p id="step3">📲 Results are displayed instantly in a simple interface.</p>
+<p id="step4">⚡ Fast, lightweight and optimized for mobile devices.</p>
+
+</div>
+
+</section>
+
+<section class="bg-black py-12 px-6 text-center">
+
+<h3 class="text-xl font-bold text-green-400 mb-4">
+Console Log
+</h3>
+
+<div class="console-box max-w-3xl mx-auto text-left" id="console">
+
+<p>[INFO] AI analysis engine started ✅</p>
+<p>[OK] Egypt localization loaded</p>
+<p>[OK] Currency set to EGP</p>
+<p>[OK] Aviator module initialized</p>
+<p>[INFO] Live data synchronization...</p>
+<p>[SUCCESS] Analysis completed</p>
+
+</div>
+
+</section>
+
+<footer class="text-center text-gray-500 text-sm py-6">
+
+© 2026 AI Game Analysis Egypt
+
+</footer>
+
+</div>
+
+<script>
+const translations = {
+  en: {
+    navHow: "How It Works",
+    navGames: "Games",
+    navStart: "Start",
+    heroTitle: "Aviator AI Analysis for Egypt",
+    heroDesc: "Players in Egypt can use our Aviator analysis interface to review game data and live statistics. Results are not guaranteed.",
+    promoLabel: "PROMOCODE FOR REGISTRATION",
+    promoSub: "Use this code to activate predictions",
+    startBtn: "Start Now",
+    errorTitle: "⚠️ Account Not Found",
+    errorDesc: "Please register your account with promo code <b>GOWAN01</b> before using the platform.",
+    regBtn: "Create Account",
+    statsTitle: "Today's Statistics (EGP)",
+    gamesTitle: "Compatible Games",
+    gameDesc: "Analyze previous rounds and receive live AI-powered statistics for Aviator.",
+    howTitle: "How It Works",
+    step1: "📡 The AI continuously analyzes Aviator game data.",
+    step2: "💡 It detects patterns and provides real-time analysis.",
+    step3: "📲 Results are displayed instantly in a simple interface.",
+    step4: "⚡ Fast, lightweight and optimized for mobile devices."
+  },
+  ar: {
+    navHow: "كيف يعمل",
+    navGames: "الألعاب",
+    navStart: "ابدأ",
+    heroTitle: "تحليل Aviator بالذكاء الاصطناعي",
+    heroDesc: "واجهة تحليل مخصصة للمستخدمين في مصر لعرض بيانات Aviator والإحصاءات المباشرة. النتائج غير مضمونة.",
+    promoLabel: "كود البرومو للتسجيل",
+    promoSub: "استخدم هذا الكود أثناء التسجيل",
+    startBtn: "ابدأ الآن",
+    errorTitle: "⚠️ الحساب غير موجود",
+    errorDesc: "يرجى تسجيل حسابك باستخدام كود البرومو <b>GOWAN01</b> قبل استخدام المنصة.",
+    regBtn: "إنشاء حساب",
+    statsTitle: "إحصائيات اليوم (EGP)",
+    gamesTitle: "الألعاب المتاحة",
+    gameDesc: "راجع الجولات السابقة وإحصاءات Aviator في واجهة بسيطة وسريعة.",
+    howTitle: "كيف يعمل",
+    step1: "📡 يقوم النظام بتحليل بيانات Aviator المتاحة.",
+    step2: "💡 يعرض الأنماط والإحصاءات في الوقت الفعلي.",
+    step3: "📲 تظهر النتائج مباشرة في واجهة سهلة الاستخدام.",
+    step4: "⚡ خفيف وسريع ومناسب للهواتف المحمولة."
+  }
+};
+
+function setLanguage(lang) {
+  document.documentElement.lang = lang;
+  document.documentElement.dir = lang === "ar" ? "rtl" : "ltr";
+  document.getElementById("langModal").style.display = "none";
+  document.getElementById("loading").classList.remove("hidden-screen");
+
+  const t = translations[lang];
+  document.getElementById("navHow").innerText = t.navHow;
+  document.getElementById("navGames").innerText = t.navGames;
+  document.getElementById("navStart").innerText = t.navStart;
+  document.getElementById("heroTitle").innerText = t.heroTitle;
+  document.getElementById("heroDesc").innerText = t.heroDesc;
+  document.getElementById("promoLabel").innerText = t.promoLabel;
+  document.getElementById("promoSub").innerText = t.promoSub;
+  document.getElementById("startButton").innerText = t.startBtn;
+  document.getElementById("errorTitle").innerText = t.errorTitle;
+  document.getElementById("errorDesc").innerHTML = t.errorDesc;
+  document.getElementById("regBtn").innerText = t.regBtn;
+  document.getElementById("statsTitle").innerText = t.statsTitle;
+  document.getElementById("gamesTitle").innerText = t.gamesTitle;
+  document.getElementById("gameDesc").innerText = t.gameDesc;
+  document.getElementById("howTitle").innerText = t.howTitle;
+  document.getElementById("step1").innerText = t.step1;
+  document.getElementById("step2").innerText = t.step2;
+  document.getElementById("step3").innerText = t.step3;
+  document.getElementById("step4").innerText = t.step4;
+
+  setTimeout(() => {
+    document.getElementById("loading").classList.add("hidden-screen");
+    document.getElementById("mainContent").classList.remove("hidden-screen");
+  }, 2500);
+}
+
+document.getElementById("startButton").addEventListener("click", () => {
+  document.getElementById("errorBox").classList.remove("hidden");
+});
+</script>
+
+</body>
+</html>
