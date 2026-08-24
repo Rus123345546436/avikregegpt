@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>AI Game Predictor - الإيداع</title>
+  <title>AI Game Predictor</title>
   <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
   <style>
     .console-box {
@@ -15,6 +15,21 @@
       color: #00ff88;
       height: 250px;
       overflow-y: auto;
+    }
+    .modal-screen {
+      font-family: sans-serif;
+      background: rgba(0, 0, 0, 0.95);
+      color: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      flex-direction: column;
+      z-index: 100;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
     }
     .loading-screen {
       font-family: monospace;
@@ -32,42 +47,65 @@
       width: 100%;
     }
     .hidden-screen {
-      display: none;
+      display: none !important;
     }
   </style>
 </head>
 <body class="bg-gray-900 text-white font-sans">
-  <div id="loading" class="loading-screen">
-    <p>جاري التحميل... يرجى الانتظار بينما نجهز تجربتك.</p>
+
+  <!-- Выбор языка -->
+  <div id="languageModal" class="modal-screen">
+    <div class="bg-gray-800 p-8 rounded-2xl border border-green-500/30 text-center max-w-sm w-full mx-4 shadow-2xl">
+      <h2 class="text-2xl font-bold mb-2 text-green-400">Select Language / اختر اللغة</h2>
+      <p class="text-gray-400 mb-6 text-sm">Выберите язык для продолжения</p>
+      
+      <div class="space-y-4">
+        <button onclick="selectLanguage('ar')" class="w-full bg-gray-700 hover:bg-green-600 text-white font-bold py-3 px-6 rounded-xl border border-gray-600 transition duration-200 flex items-center justify-center space-x-3 space-x-reverse">
+          <span class="text-xl">🇪🇬</span>
+          <span class="text-lg">العربية</span>
+        </button>
+        
+        <button onclick="selectLanguage('ru')" class="w-full bg-gray-700 hover:bg-green-600 text-white font-bold py-3 px-6 rounded-xl border border-gray-600 transition duration-200 flex items-center justify-center space-x-3">
+          <span class="text-xl">🌐</span>
+          <span class="text-lg">Русский</span>
+        </button>
+      </div>
+    </div>
   </div>
 
+  <!-- Экран загрузки -->
+  <div id="loading" class="loading-screen hidden-screen">
+    <p id="loadingText">جاري التحميل... يرجى الانتظار بينما نجهز تجربتك.</p>
+  </div>
+
+  <!-- Основной контент -->
   <div id="mainContent" class="hidden-screen">
     <header class="w-full bg-gray-800 p-4 flex justify-between items-center">
       <h1 class="text-xl font-bold text-green-400">1xBet AI Predictor</h1>
-      <nav class="space-x-4 space-x-reverse">
-        <a href="#how" class="hover:text-green-400">كيف يعمل</a>
-        <a href="#games" class="hover:text-green-400">الألعاب</a>
-        <a href="#start" class="hover:text-green-400">ابدأ الآن</a>
+      <nav class="space-x-4 space-x-reverse" id="navLinks">
+        <a href="#how" class="hover:text-green-400" id="navHow">كيف يعمل</a>
+        <a href="#games" class="hover:text-green-400" id="navGames">الألعاب</a>
+        <a href="#start" class="hover:text-green-400" id="navStart">ابدأ الآن</a>
       </nav>
     </header>
 
     <section class="min-h-screen flex flex-col items-center justify-center px-4 text-center">
-      <h2 class="text-3xl md:text-5xl font-bold mb-6">احصل على أموال حقيقية مع توقعات الذكاء الاصطناعي</h2>
-      <p class="max-w-xl mb-8 text-gray-300">آلاف اللاعبين في مصر يستخدمون الذكاء الاصطناعي لدينا للفوز في ألعاب مثل Aviator وMines وPenalty. دقة إشارات 98%، توقعات في الوقت الفعلي وسحب سريع.</p>
+      <h2 class="text-3xl md:text-5xl font-bold mb-6" id="mainTitle">احصل على أموال حقيقية مع توقعات الذكاء الاصطناعي</h2>
+      <p class="max-w-xl mb-8 text-gray-300" id="mainDesc">آلاف اللاعبين في مصر يستخدمون الذكاء الاصطناعي لدينا للفوز في ألعاب مثل Aviator وMines وPenalty. دقة إشارات 98%، توقعات في الوقت الفعلي وسحب سريع.</p>
 
       <input id="userId" type="text" placeholder="أدخل معرف حساب 1xBet الخاص بك (Account ID)" class="bg-gray-700 text-white p-3 rounded-md mb-4 w-full max-w-xs text-center" />
       <button id="connectButton" class="bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-6 rounded-xl text-lg transition">ربط الحساب</button>
 
       <div id="connectionSuccess" class="hidden text-green-400 font-bold mt-6">
-        <p>معرف الحساب: <span id="accountIdDisplay">1254567890</span> تم ربطه بنجاح!</p>
-        <p>الحالة: نشط | دقة 100% | تم تحليل الخوارزميات</p>
+        <p><span id="txtAccId">معرف الحساب:</span> <span id="accountIdDisplay">1254567890</span> <span id="txtSuccess">تم ربطه بنجاح!</span></p>
+        <p id="txtStatus">الحالة: نشط | دقة 100% | تم تحليل الخوارزميات</p>
         <button id="getSignalButton" class="bg-green-500 hover:bg-green-600 text-white font-semibold py-3 px-6 rounded-xl text-lg transition mt-4">احصل على الإشارة</button>
       </div>
 
       <div id="errorBox" class="hidden bg-red-600 p-6 rounded-xl max-w-md mx-auto mt-6">
-        <h2 class="text-xl font-bold mb-2">⚠️ لم يتم العثور على إيداع</h2>
-        <p class="mb-2">يبدو أن رصيدك فارغ. يرجى إيداع 100 ج.م لفتح الإشارات والبدء في تحقيق الأرباح.</p>
-        <p class="mb-4 font-bold text-yellow-300">استخدم الرمز الترويجي: GOWAN01</p>
+        <h2 class="text-xl font-bold mb-2" id="errTitle">⚠️ لم يتم العثور على إيداع</h2>
+        <p class="mb-2" id="errDesc">يبدو أن رصيدك فارغ. يرجى إيداع 100 ج.م لفتح الإشارات والبدء في تحقيق الأرباح.</p>
+        <p class="mb-4 font-bold text-yellow-300"><span id="txtPromo">استخدم الرمز الترويجي:</span> GOWAN01</p>
         <a href="https://reffpa.com/L?tag=d_5434769m_18607c_&site=5434769&ad=18607&r=registration" target="_blank" id="depositButton" class="inline-block bg-yellow-400 hover:bg-yellow-500 text-black font-bold py-2 px-4 rounded-lg transition">
           إيداع الآن على 1xBet
         </a>
@@ -75,34 +113,34 @@
     </section>
 
     <section class="bg-gray-800 py-12 px-6 text-center">
-      <h3 class="text-2xl font-bold text-green-400 mb-6">أعلى الفائزين اليوم (ج.م)</h3>
-      <div class="grid md:grid-cols-2 gap-4 text-right max-w-4xl mx-auto text-sm text-green-300">
-        <p>👤 معرف المستخدم: 1718473422 – 2 450 ج.م</p>
-        <p>👤 معرف المستخدم: 1711238474 – 2 890 ج.م</p>
-        <p>👤 معرف المستخدم: 1709234822 – 2 120 ج.م</p>
-        <p>👤 معرف المستخدم: 1717339121 – 2 980 ج.م</p>
-        <p>👤 معرف المستخدم: 1712900113 – 2 300 ج.م</p>
-        <p>👤 معرف المستخدم: 1713721091 – 2 670 ج.م</p>
-        <p>👤 معرف المستخدم: 1711937742 – 2 200 ج.م</p>
-        <p>👤 معرف المستخدم: 1714921811 – 2 780 ج.م</p>
-        <p>👤 معرف المستخدم: 1713238742 – 2 560 ج.م</p>
-        <p>👤 معرف المستخدم: 1717749301 – 3 000 ج.م</p>
+      <h3 class="text-2xl font-bold text-green-400 mb-6" id="winnersTitle">أعلى الفائزين اليوم (ج.م)</h3>
+      <div class="grid md:grid-cols-2 gap-4 text-right max-w-4xl mx-auto text-sm text-green-300" id="winnersList">
+        <p>👤 <span class="uText">معرف المستخدم:</span> 1718473422 – 2 450 <span class="cText">ج.م</span></p>
+        <p>👤 <span class="uText">معرف المستخدم:</span> 1711238474 – 2 890 <span class="cText">ج.م</span></p>
+        <p>👤 <span class="uText">معرف المستخدم:</span> 1709234822 – 2 120 <span class="cText">ج.م</span></p>
+        <p>👤 <span class="uText">معرف المستخدم:</span> 1717339121 – 2 980 <span class="cText">ج.م</span></p>
+        <p>👤 <span class="uText">معرف المستخدم:</span> 1712900113 – 2 300 <span class="cText">ج.م</span></p>
+        <p>👤 <span class="uText">معرف المستخدم:</span> 1713721091 – 2 670 <span class="cText">ج.م</span></p>
+        <p>👤 <span class="uText">معرف المستخدم:</span> 1711937742 – 2 200 <span class="cText">ج.م</span></p>
+        <p>👤 <span class="uText">معرف المستخدم:</span> 1714921811 – 2 780 <span class="cText">ج.م</span></p>
+        <p>👤 <span class="uText">معرف المستخدم:</span> 1713238742 – 2 560 <span class="cText">ج.م</span></p>
+        <p>👤 <span class="uText">معرف المستخدم:</span> 1717749301 – 3 000 <span class="cText">ج.م</span></p>
       </div>
     </section>
 
     <section id="games" class="bg-gray-800 py-12 px-6 text-center">
-      <h3 class="text-2xl font-bold text-green-400 mb-6">الألعاب المدعومة</h3>
+      <h3 class="text-2xl font-bold text-green-400 mb-6" id="gamesTitle">الألعاب المدعومة</h3>
       <div class="grid md:grid-cols-3 gap-6 max-w-5xl mx-auto">
         <div class="bg-gray-700 p-6 rounded-xl shadow-lg">
           <h4 class="text-xl font-bold mb-2">🎮 Aviator</h4>
-          <p class="text-gray-300">توقع متى تسحب أموالك قبل أن تطير الطائرة. يتعرف الذكاء الاصطناعي لدينا على الأنماط في الوقت الفعلي.</p>
+          <p class="text-gray-300" id="aviatorDesc">توقع متى تسحب أموالك قبل أن تطير الطائرة. يتعرف الذكاء الاصطناعي لدينا على الأنماط في الوقت الفعلي.</p>
         </div>
       </div>
     </section>
 
     <section id="how" class="bg-gray-900 py-12 px-6 text-center">
-      <h3 class="text-2xl font-bold text-green-400 mb-6">كيف يعمل</h3>
-      <div class="max-w-3xl mx-auto space-y-4 text-gray-300">
+      <h3 class="text-2xl font-bold text-green-400 mb-6" id="howTitle">كيف يعمل</h3>
+      <div class="max-w-3xl mx-auto space-y-4 text-gray-300" id="howSteps">
         <p>📡 ينحلل الذكاء الاصطناعي لدينا البيانات المباشرة والنتائج التاريخية على مدار الساعة 24/7.</p>
         <p>💡 يتعرف على الأنماط التي تحقق أرباحًا باستمرار.</p>
         <p>📲 تتلقى التوقعات في الوقت الفعلي مباشرة على جهازك.</p>
@@ -110,22 +148,130 @@
     </section>
 
     <section class="bg-black py-12 px-6 text-center">
-      <h3 class="text-xl font-bold text-green-400 mb-4">[ سجل النظام - Console Log ]</h3>
+      <h3 class="text-xl font-bold text-green-400 mb-4">[ Console Log ]</h3>
       <div class="console-box max-w-3xl mx-auto text-left" id="console" dir="ltr">
         <p>[INFO] Predictor service active ✅</p>
       </div>
     </section>
 
-    <footer class="text-center text-gray-500 text-sm py-6">
+    <footer class="text-center text-gray-500 text-sm py-6" id="footerText">
       © 2026 AI Predictor. غير مرتبط بـ 1xBet. استخدمه بمسؤولية.
     </footer>
   </div>
 
   <script>
-    setTimeout(() => {
-      document.getElementById("loading").classList.add("hidden-screen");
-      document.getElementById("mainContent").classList.remove("hidden-screen");
-    }, 3000);
+    const translations = {
+      ar: {
+        dir: "rtl",
+        loading: "جاري التحميل... يرجى الانتظار بينما نجهز تجربتك.",
+        navHow: "كيف يعمل",
+        navGames: "الألعاب",
+        navStart: "ابدأ الآن",
+        mainTitle: "احصل على أموال حقيقية مع توقعات الذكاء الاصطناعي",
+        mainDesc: "آلاف اللاعبين في مصر يستخدمون الذكاء الاصطناعي لدينا للفوز في ألعاب مثل Aviator وMines وPenalty. دقة إشارات 98%، توقعات في الوقت الفعلي وسحب سريع.",
+        placeholder: "أدخل معرف حساب 1xBet الخاص بك (Account ID)",
+        btnConnect: "ربط الحساب",
+        txtAccId: "معرف الحساب:",
+        txtSuccess: "تم ربطه بنجاح!",
+        txtStatus: "الحالة: نشط | دقة 100% | تم تحليل الخوارزميات",
+        btnGetSignal: "احصل على الإشارة",
+        errTitle: "⚠️ لم يتم العثور على إيداع",
+        errDesc: "يبدو أن رصيدك فارغ. يرجى إيداع 100 ج.م لفتح الإشارات والبدء في تحقيق الأرباح.",
+        txtPromo: "استخدم الرمز الترويجي:",
+        btnDeposit: "إيداع الآن على 1xBet",
+        winnersTitle: "أعلى الفائزين اليوم (ج.م)",
+        uText: "معرف المستخدم:",
+        cText: "ج.م",
+        gamesTitle: "الألعاب المدعومة",
+        aviatorDesc: "توقع متى تسحب أموالك قبل أن تطير الطائرة. يتعرف الذكاء الاصطناعي لدينا على الأنماط في الوقت الفعلي.",
+        howTitle: "كيف يعمل",
+        howSteps: [
+          "📡 ينحلل الذكاء الاصطناعي لدينا البيانات المباشرة والنتائج التاريخية على مدار الساعة 24/7.",
+          "💡 يتعرف على الأنماط التي تحقق أرباحًا باستمرار.",
+          "📲 تتلقى التوقعات في الوقت الفعلي مباشرة على جهازك."
+        ],
+        footer: "© 2026 AI Predictor. غير مرتبط بـ 1xBet. استخدمه بمسؤولية."
+      },
+      ru: {
+        dir: "ltr",
+        loading: "Загрузка... Пожалуйста, подождите, пока мы подготавливаем систему.",
+        navHow: "Как это работает",
+        navGames: "Игры",
+        navStart: "Начать",
+        mainTitle: "Зарабатывайте реальные деньги с AI прогнозами",
+        mainDesc: "Тысячи игроков в Египте используют наш ИИ для победы в Aviator, Mines и Penalty. Точность сигналов 98%, прогнозы в реальном времени и быстрые выплаты.",
+        placeholder: "Введите ваш 1xBet Account ID",
+        btnConnect: "Подключить аккаунт",
+        txtAccId: "ID аккаунта:",
+        txtSuccess: "успешно подключен!",
+        txtStatus: "Статус: Активен | 100% Точность | Алгоритмы проанализированы",
+        btnGetSignal: "Получить сигнал",
+        errTitle: "⚠️ Депозит не найден",
+        errDesc: "Похоже, ваш баланс пуст. Пожалуйста, пополните счет на 100 EGP, чтобы разблокировать сигналы и начать выигрывать.",
+        txtPromo: "Используйте промокод:",
+        btnDeposit: "Пополнить сейчас на 1xBet",
+        winnersTitle: "Топ победителей сегодня (EGP)",
+        uText: "User ID:",
+        cText: "EGP",
+        gamesTitle: "Поддерживаемые игры",
+        aviatorDesc: "Предсказывайте момент для забора денег до улета самолета. ИИ распознает паттерны в реальном времени.",
+        howTitle: "Как это работает",
+        howSteps: [
+          "📡 Наш ИИ анализирует данные и исторические результаты 24/7.",
+          "💡 Находит алгоритмы, которые стабильно приносят прибыль.",
+          "📲 Вы получаете сигналы в реальном времени прямо на устройство."
+        ],
+        footer: "© 2026 AI Predictor. Не связано с 1xBet. Играйте ответственно."
+      }
+    };
+
+    function selectLanguage(lang) {
+      document.getElementById("languageModal").classList.add("hidden-screen");
+      document.getElementById("loading").classList.remove("hidden-screen");
+
+      const t = translations[lang];
+      document.documentElement.dir = t.dir;
+      document.documentElement.lang = lang;
+
+      document.getElementById("loadingText").innerText = t.loading;
+      document.getElementById("navHow").innerText = t.navHow;
+      document.getElementById("navGames").innerText = t.navGames;
+      document.getElementById("navStart").innerText = t.navStart;
+      document.getElementById("mainTitle").innerText = t.mainTitle;
+      document.getElementById("mainDesc").innerText = t.mainDesc;
+      document.getElementById("userId").placeholder = t.placeholder;
+      document.getElementById("connectButton").innerText = t.btnConnect;
+      document.getElementById("txtAccId").innerText = t.txtAccId;
+      document.getElementById("txtSuccess").innerText = t.txtSuccess;
+      document.getElementById("txtStatus").innerText = t.txtStatus;
+      document.getElementById("getSignalButton").innerText = t.btnGetSignal;
+      document.getElementById("errTitle").innerText = t.errTitle;
+      document.getElementById("errDesc").innerText = t.errDesc;
+      document.getElementById("txtPromo").innerText = t.txtPromo;
+      document.getElementById("depositButton").innerText = t.btnDeposit;
+      document.getElementById("winnersTitle").innerText = t.winnersTitle;
+      document.getElementById("gamesTitle").innerText = t.gamesTitle;
+      document.getElementById("aviatorDesc").innerText = t.aviatorDesc;
+      document.getElementById("howTitle").innerText = t.howTitle;
+      document.getElementById("footerText").innerText = t.footer;
+
+      document.querySelectorAll(".uText").forEach(el => el.innerText = t.uText);
+      document.querySelectorAll(".cText").forEach(el => el.innerText = t.cText);
+
+      const stepsContainer = document.getElementById("howSteps");
+      stepsContainer.innerHTML = t.howSteps.map(step => `<p>${step}</p>`).join("");
+
+      if(lang === 'ru') {
+        document.getElementById("winnersList").classList.remove("text-right");
+        document.getElementById("winnersList").classList.add("text-left");
+        document.getElementById("navLinks").classList.remove("space-x-reverse");
+      }
+
+      setTimeout(() => {
+        document.getElementById("loading").classList.add("hidden-screen");
+        document.getElementById("mainContent").classList.remove("hidden-screen");
+      }, 2500);
+    }
 
     document.getElementById("connectButton").addEventListener("click", () => {
       const userId = document.getElementById("userId").value;
