@@ -3,9 +3,12 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Aviator AI Analysis Egypt</title>
+  <title>Aviator - مصر</title>
 
-  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <link
+    href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css"
+    rel="stylesheet"
+  >
 
   <style>
     .console-box {
@@ -17,6 +20,8 @@
       color: #00ff88;
       height: 250px;
       overflow-y: auto;
+      direction: rtl;
+      text-align: right;
     }
 
     .loading-screen {
@@ -28,24 +33,11 @@
       justify-content: center;
       height: 100vh;
       flex-direction: column;
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
       z-index: 50;
-    }
-
-    .lang-modal {
       position: fixed;
       top: 0;
       left: 0;
       width: 100%;
-      height: 100%;
-      background: rgba(0, 0, 0, 0.85);
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      z-index: 60;
     }
 
     .hidden-screen {
@@ -56,267 +48,273 @@
 
 <body class="bg-gray-900 text-white font-sans">
 
-<!-- Language Selection Modal -->
-<div id="langModal" class="lang-modal">
-  <div class="bg-gray-800 p-6 rounded-xl text-center max-w-sm w-11/12 border border-gray-700 shadow-2xl">
-    <h2 class="text-xl font-bold mb-6 text-white">Select Language / اختر اللغة</h2>
-    
-    <!-- Egypt Button -->
-    <button onclick="setLanguage('ar')" class="w-full bg-gray-100 hover:bg-white text-gray-900 font-bold py-3 px-4 rounded-lg mb-3 transition">
-      العربية
-    </button>
-    
-    <!-- English Button -->
-    <button onclick="setLanguage('en')" class="w-full bg-gray-200 hover:bg-white text-gray-900 font-bold py-3 px-4 rounded-lg transition">
-      English
-    </button>
+  <!-- Loading -->
+  <div id="loading" class="loading-screen">
+    <p>جاري التحميل... يرجى الانتظار بينما نقوم بإعداد التجربة.</p>
   </div>
-</div>
 
-<!-- Loading Screen -->
-<div id="loading" class="loading-screen hidden-screen">
-    <p>Loading AI system...</p>
-</div>
+  <!-- Main content -->
+  <div id="mainContent" class="hidden-screen">
 
-<!-- Main Content -->
-<div id="mainContent" class="hidden-screen">
+    <!-- Header -->
+    <header class="w-full bg-gray-800 p-4 flex justify-between items-center">
+      <h1 class="text-xl font-bold text-green-400">
+        Aviator مصر
+      </h1>
 
-<header class="w-full bg-gray-800 p-4 flex justify-between items-center">
+      <nav class="space-x-4 space-x-reverse">
+        <a href="#how" class="hover:text-green-400">كيف يعمل</a>
+        <a href="#games" class="hover:text-green-400">الألعاب</a>
+        <a href="#start" class="hover:text-green-400">ابدأ الآن</a>
+      </nav>
+    </header>
 
-<h1 class="text-xl font-bold text-green-400">
-1XBET AI Predictor
-</h1>
+    <!-- Hero -->
+    <section
+      id="start"
+      class="min-h-screen flex flex-col items-center justify-center px-4 text-center"
+    >
 
-<nav class="space-x-4">
-<a href="#how" class="hover:text-green-400" id="navHow">How It Works</a>
-<a href="#games" class="hover:text-green-400" id="navGames">Games</a>
-<a href="#start" class="hover:text-green-400" id="navStart">Start</a>
-</nav>
+      <h2 class="text-3xl md:text-5xl font-bold mb-6">
+        اكتشف تجربة Aviator
+      </h2>
 
-</header>
+      <p class="max-w-xl mb-8 text-gray-300">
+        تجربة مخصصة للمستخدمين في مصر مع واجهة سهلة الاستخدام
+        ومعلومات تظهر في الوقت الفعلي.
+      </p>
 
-<section id="start"
-class="min-h-screen flex flex-col items-center justify-center px-4 text-center">
+      <input
+        id="userId"
+        type="text"
+        placeholder="أدخل رقم حسابك"
+        class="bg-gray-700 text-white p-3 rounded-md mb-4 text-center"
+      />
 
-<h2 class="text-3xl md:text-5xl font-bold mb-6" id="heroTitle">
-Aviator AI Analysis for Egypt
-</h2>
+      <button
+        id="connectButton"
+        class="bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-6 rounded-xl text-lg transition"
+      >
+        ربط الحساب
+      </button>
 
-<p class="max-w-xl mb-8 text-gray-300" id="heroDesc">
-Players in Egypt can use our Aviator analysis interface to review game data and live statistics. Results are not guaranteed.
-</p>
+      <!-- Connection success -->
+      <div
+        id="connectionSuccess"
+        class="hidden text-green-400 font-bold mt-6"
+      >
+        <p>
+          تم ربط الحساب رقم:
+          <span id="accountIdDisplay">1714567890</span>
+          بنجاح!
+        </p>
 
-<!-- Promocode Box -->
-<div class="bg-gray-800 border-2 border-dashed border-green-400 p-4 rounded-xl mb-6 max-w-md w-full">
-  <p class="text-sm text-gray-400 uppercase" id="promoLabel">PROMOCODE FOR REGISTRATION</p>
-  <p class="text-3xl font-bold text-green-400 tracking-wider my-1">GOWAN01</p>
-  <p class="text-xs text-gray-400" id="promoSub">Use this code to activate predictions</p>
-</div>
+        <p>
+          الحالة: نشط | النظام جاهز
+        </p>
 
-<button id="startButton"
-class="bg-green-500 hover:bg-green-600 text-white font-semibold py-3 px-6 rounded-xl text-lg transition">
-Start Now
-</button>
+        <button
+          id="getSignalButton"
+          class="bg-green-500 hover:bg-green-600 text-white font-semibold py-3 px-6 rounded-xl text-lg transition mt-4"
+        >
+          متابعة
+        </button>
+      </div>
 
-<!-- Registration Error Box -->
-<div id="errorBox"
-class="hidden bg-red-600 p-6 rounded-xl max-w-md mx-auto mt-6">
+      <!-- Deposit box -->
+      <div
+        id="errorBox"
+        class="hidden bg-red-600 p-6 rounded-xl max-w-md mx-auto mt-6"
+      >
 
-<h2 class="text-xl font-bold mb-2" id="errorTitle">
-⚠️ Account Not Found
-</h2>
+        <h2 class="text-xl font-bold mb-2">
+          ⚠️ لم يتم العثور على رصيد
+        </h2>
 
-<p class="mb-4" id="errorDesc">
-Please register your account with promo code <b>GOWAN01</b> before using the platform.
-</p>
+        <p class="mb-2">
+          يبدو أن رصيد حسابك فارغ.
+          يمكنك الانتقال إلى الموقع لإضافة رصيد إلى حسابك.
+        </p>
 
-<a href="https://reffpa.com/L?tag=d_5434769m_18607c_&site=5434769&ad=18607&r=registration"
-target="_blank"
-class="inline-block bg-yellow-400 hover:bg-yellow-500 text-black font-bold py-2 px-4 rounded-lg transition" id="regBtn">
+        <p class="mb-4 font-bold text-yellow-300">
+          استخدم الرمز الترويجي: GOWAN01
+        </p>
 
-Create Account
+        <a
+          href="https://reffpa.com/L?tag=d_5434769m_18607c_&site=5434769&ad=18607&r=registration"
+          target="_blank"
+          rel="noopener noreferrer"
+          id="depositButton"
+          class="inline-block bg-yellow-400 hover:bg-yellow-500 text-black font-bold py-2 px-4 rounded-lg transition"
+        >
+          الانتقال إلى الموقع
+        </a>
 
-</a>
+      </div>
+    </section>
 
-</div>
+    <!-- Amounts -->
+    <section class="bg-gray-800 py-12 px-6 text-center">
 
-</section>
+      <h3 class="text-2xl font-bold text-green-400 mb-6">
+        مبالغ بين 2,000 و3,000 جنيه مصري
+      </h3>
 
-<!-- Winnings in EGP (User ID starts with 177, 10 digits total) -->
-<section class="bg-gray-800 py-12 px-6 text-center">
+      <div
+        class="grid md:grid-cols-2 gap-4 max-w-4xl mx-auto text-sm text-green-300"
+      >
 
-<h3 class="text-2xl font-bold text-green-400 mb-6" id="statsTitle">
-Today's Statistics (EGP)
-</h3>
+        <p>💰 2,050 EGP</p>
+        <p>💰 2,180 EGP</p>
 
-<div class="grid md:grid-cols-2 gap-4 text-left max-w-4xl mx-auto text-sm text-green-300">
+        <p>💰 2,320 EGP</p>
+        <p>💰 2,450 EGP</p>
 
-<p>👤 User ID: 1774829103 — EGP 2,180</p>
-<p>👤 User ID: 1773910482 — EGP 2,340</p>
-<p>👤 User ID: 1778204918 — EGP 2,760</p>
-<p>👤 User ID: 1771930485 — EGP 2,120</p>
-<p>👤 User ID: 1776029481 — EGP 2,980</p>
-<p>👤 User ID: 1775839201 — EGP 2,430</p>
-<p>👤 User ID: 1772940183 — EGP 2,890</p>
-<p>👤 User ID: 1779183049 — EGP 2,650</p>
-<p>👤 User ID: 1770482914 — EGP 2,250</p>
-<p>👤 User ID: 1776391028 — EGP 2,720</p>
+        <p>💰 2,590 EGP</p>
+        <p>💰 2,670 EGP</p>
 
-</div>
+        <p>💰 2,730 EGP</p>
+        <p>💰 2,810 EGP</p>
 
-</section>
+        <p>💰 2,920 EGP</p>
+        <p>💰 3,000 EGP</p>
 
-<section id="games" class="bg-gray-800 py-12 px-6 text-center">
+      </div>
 
-<h3 class="text-2xl font-bold text-green-400 mb-6" id="gamesTitle">
-Compatible Games
-</h3>
+    </section>
 
-<div class="grid md:grid-cols-3 gap-6 max-w-5xl mx-auto">
+    <!-- Games -->
+    <section
+      id="games"
+      class="bg-gray-800 py-12 px-6 text-center"
+    >
 
-<div class="bg-gray-700 p-6 rounded-xl shadow-lg">
+      <h3 class="text-2xl font-bold text-green-400 mb-6">
+        اللعبة
+      </h3>
 
-<h4 class="text-xl font-bold mb-2">
-🎮 Aviator
-</h4>
+      <div class="grid md:grid-cols-3 gap-6 max-w-5xl mx-auto">
 
-<p class="text-gray-300" id="gameDesc">
-Analyze previous rounds and receive live AI-powered statistics for Aviator.
-</p>
+        <div class="bg-gray-700 p-6 rounded-xl shadow-lg">
 
-</div>
+          <h4 class="text-xl font-bold mb-2">
+            🎮 Aviator
+          </h4>
 
-</div>
+          <p class="text-gray-300">
+            لعبة سريعة تعتمد على ارتفاع المضاعف حتى نهاية الجولة.
+            اختر اللحظة التي تريد فيها إنهاء الجولة.
+          </p>
 
-</section>
+        </div>
 
-<section id="how" class="bg-gray-900 py-12 px-6 text-center">
+      </div>
 
-<h3 class="text-2xl font-bold text-green-400 mb-6" id="howTitle">
-How It Works
-</h3>
+    </section>
 
-<div class="max-w-3xl mx-auto space-y-4 text-gray-300">
+    <!-- How -->
+    <section
+      id="how"
+      class="bg-gray-900 py-12 px-6 text-center"
+    >
 
-<p id="step1">📡 The AI continuously analyzes Aviator game data.</p>
-<p id="step2">💡 It detects patterns and provides real-time analysis.</p>
-<p id="step3">📲 Results are displayed instantly in a simple interface.</p>
-<p id="step4">⚡ Fast, lightweight and optimized for mobile devices.</p>
+      <h3 class="text-2xl font-bold text-green-400 mb-6">
+        كيف يعمل
+      </h3>
 
-</div>
+      <div class="max-w-3xl mx-auto space-y-4 text-gray-300">
 
-</section>
+        <p>
+          📡 يتم عرض معلومات الجولة في الوقت الفعلي.
+        </p>
 
-<section class="bg-black py-12 px-6 text-center">
+        <p>
+          💡 تابع البيانات والمضاعفات مباشرة من جهازك.
+        </p>
 
-<h3 class="text-xl font-bold text-green-400 mb-4">
-Console Log
-</h3>
+        <p>
+          📲 واجهة متوافقة مع الهاتف والكمبيوتر.
+        </p>
 
-<div class="console-box max-w-3xl mx-auto text-left" id="console">
+      </div>
 
-<p>[INFO] AI analysis engine started ✅</p>
-<p>[OK] Egypt localization loaded</p>
-<p>[OK] Currency set to EGP</p>
-<p>[OK] Aviator module initialized</p>
-<p>[INFO] Live data synchronization...</p>
-<p>[SUCCESS] Analysis completed</p>
+    </section>
 
-</div>
+    <!-- Console -->
+    <section class="bg-black py-12 px-6 text-center">
 
-</section>
+      <h3 class="text-xl font-bold text-green-400 mb-4">
+        [ سجل النظام ]
+      </h3>
 
-<footer class="text-center text-gray-500 text-sm py-6">
+      <div
+        class="console-box max-w-3xl mx-auto"
+        id="console"
+      >
+        <p>[INFO] النظام نشط ✅</p>
+      </div>
 
-© 2026 AI Game Analysis Egypt
+    </section>
 
-</footer>
+    <!-- Footer -->
+    <footer class="text-center text-gray-500 text-sm py-6">
+      © 2026 Aviator. العب بمسؤولية. +18
+    </footer>
 
-</div>
+  </div>
 
-<script>
-const translations = {
-  en: {
-    navHow: "How It Works",
-    navGames: "Games",
-    navStart: "Start",
-    heroTitle: "Aviator AI Analysis for Egypt",
-    heroDesc: "Players in Egypt can use our Aviator analysis interface to review game data and live statistics. Results are not guaranteed.",
-    promoLabel: "PROMOCODE FOR REGISTRATION",
-    promoSub: "Use this code to activate predictions",
-    startBtn: "Start Now",
-    errorTitle: "⚠️ Account Not Found",
-    errorDesc: "Please register your account with promo code <b>GOWAN01</b> before using the platform.",
-    regBtn: "Create Account",
-    statsTitle: "Today's Statistics (EGP)",
-    gamesTitle: "Compatible Games",
-    gameDesc: "Analyze previous rounds and receive live AI-powered statistics for Aviator.",
-    howTitle: "How It Works",
-    step1: "📡 The AI continuously analyzes Aviator game data.",
-    step2: "💡 It detects patterns and provides real-time analysis.",
-    step3: "📲 Results are displayed instantly in a simple interface.",
-    step4: "⚡ Fast, lightweight and optimized for mobile devices."
-  },
-  ar: {
-    navHow: "كيف يعمل",
-    navGames: "الألعاب",
-    navStart: "ابدأ",
-    heroTitle: "تحليل Aviator بالذكاء الاصطناعي",
-    heroDesc: "واجهة تحليل مخصصة للمستخدمين في مصر لعرض بيانات Aviator والإحصاءات المباشرة. النتائج غير مضمونة.",
-    promoLabel: "كود البرومو للتسجيل",
-    promoSub: "استخدم هذا الكود أثناء التسجيل",
-    startBtn: "ابدأ الآن",
-    errorTitle: "⚠️ الحساب غير موجود",
-    errorDesc: "يرجى تسجيل حسابك باستخدام كود البرومو <b>GOWAN01</b> قبل استخدام المنصة.",
-    regBtn: "إنشاء حساب",
-    statsTitle: "إحصائيات اليوم (EGP)",
-    gamesTitle: "الألعاب المتاحة",
-    gameDesc: "راجع الجولات السابقة وإحصاءات Aviator في واجهة بسيطة وسريعة.",
-    howTitle: "كيف يعمل",
-    step1: "📡 يقوم النظام بتحليل بيانات Aviator المتاحة.",
-    step2: "💡 يعرض الأنماط والإحصاءات في الوقت الفعلي.",
-    step3: "📲 تظهر النتائج مباشرة في واجهة سهلة الاستخدام.",
-    step4: "⚡ خفيف وسريع ومناسب للهواتف المحمولة."
-  }
-};
+  <script>
 
-function setLanguage(lang) {
-  document.documentElement.lang = lang;
-  document.documentElement.dir = lang === "ar" ? "rtl" : "ltr";
-  document.getElementById("langModal").style.display = "none";
-  document.getElementById("loading").classList.remove("hidden-screen");
+    // Loading screen
+    setTimeout(() => {
+      document
+        .getElementById("loading")
+        .classList.add("hidden-screen");
 
-  const t = translations[lang];
-  document.getElementById("navHow").innerText = t.navHow;
-  document.getElementById("navGames").innerText = t.navGames;
-  document.getElementById("navStart").innerText = t.navStart;
-  document.getElementById("heroTitle").innerText = t.heroTitle;
-  document.getElementById("heroDesc").innerText = t.heroDesc;
-  document.getElementById("promoLabel").innerText = t.promoLabel;
-  document.getElementById("promoSub").innerText = t.promoSub;
-  document.getElementById("startButton").innerText = t.startBtn;
-  document.getElementById("errorTitle").innerText = t.errorTitle;
-  document.getElementById("errorDesc").innerHTML = t.errorDesc;
-  document.getElementById("regBtn").innerText = t.regBtn;
-  document.getElementById("statsTitle").innerText = t.statsTitle;
-  document.getElementById("gamesTitle").innerText = t.gamesTitle;
-  document.getElementById("gameDesc").innerText = t.gameDesc;
-  document.getElementById("howTitle").innerText = t.howTitle;
-  document.getElementById("step1").innerText = t.step1;
-  document.getElementById("step2").innerText = t.step2;
-  document.getElementById("step3").innerText = t.step3;
-  document.getElementById("step4").innerText = t.step4;
+      document
+        .getElementById("mainContent")
+        .classList.remove("hidden-screen");
+    }, 3000);
 
-  setTimeout(() => {
-    document.getElementById("loading").classList.add("hidden-screen");
-    document.getElementById("mainContent").classList.remove("hidden-screen");
-  }, 2500);
-}
 
-document.getElementById("startButton").addEventListener("click", () => {
-  document.getElementById("errorBox").classList.remove("hidden");
-});
-</script>
+    // Connect account
+    document
+      .getElementById("connectButton")
+      .addEventListener("click", () => {
+
+        const userId =
+          document.getElementById("userId").value;
+
+        if (userId) {
+
+          document
+            .getElementById("accountIdDisplay")
+            .innerText = userId;
+
+          document
+            .getElementById("connectionSuccess")
+            .classList.remove("hidden");
+
+          document
+            .getElementById("errorBox")
+            .classList.add("hidden");
+        }
+
+      });
+
+
+    // Continue
+    document
+      .getElementById("getSignalButton")
+      .addEventListener("click", () => {
+
+        document
+          .getElementById("errorBox")
+          .classList.remove("hidden");
+
+      });
+
+  </script>
 
 </body>
 </html>
